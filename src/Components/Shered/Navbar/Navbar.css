@@ -1,0 +1,14 @@
+a.active{
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    border-bottom: 1px solid #ec7210 !important;
+    border-top: 1px solid #ec7210 !important;
+    color: #ec7210 !important;
+}
+a.focus{
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+}
+.btn.active{
+    border-inline: 1px solid #ec7210 !important;
+}
