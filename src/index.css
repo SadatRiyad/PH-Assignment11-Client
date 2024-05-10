@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Rajdhani", sans-serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.font-Roboto{
+  font-family: "Roboto", sans-serif;
+}
+.font-Rajdhani{
+  font-family: "Rajdhani", sans-serif;
+}
+
+
+/* header start */
+header {
+  background-color: #1313130D;
+  background-position: top center;
+  background-size: cover;
+  border-radius: 16px;
+  text-align: left;
+  padding: 70px 0px 50px;
+  margin-top: 5px;
+}
+/* header end */
