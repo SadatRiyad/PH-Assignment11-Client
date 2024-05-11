@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
                     setUser(user);
                 });
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
         } finally {
             setLoading(false);
         }
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
                     setUser(user);
                 });
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
         } finally {
             setLoading(false);
         }

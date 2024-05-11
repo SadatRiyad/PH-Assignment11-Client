@@ -31,11 +31,25 @@ const Navbar = () => {
 
 
     const Links = <>
-        <li><NavLink to="/" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Home</NavLink></li>
-        <li><NavLink to="/queries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
-        <li><NavLink to="/recommendationsForMe" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Recommendations For Me</NavLink></li>
-        <li><NavLink to="/myQueries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">My Queries</NavLink></li>
-        <li><NavLink to="/myRecommendations" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">My recommendations</NavLink></li>
+        {
+            user ?
+                <>
+                    <li><NavLink to="/" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Home</NavLink></li>
+                    <li><NavLink to="/queries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
+                    <li><NavLink to="/recommendationsForMe" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Recommendations For Me</NavLink></li>
+                    <li><NavLink to="/myQueries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">My Queries</NavLink></li>
+                    <li><NavLink to="/myRecommendations" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">My Recommendations</NavLink></li>
+                    <li><NavLink to="/contactUs" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Contact Us</NavLink></li>
+                </>
+                :
+                <>
+                    <li><NavLink to="/" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Home</NavLink></li>
+                    <li><NavLink to="/queries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
+                    <li><NavLink to="/contactUs" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Contact Us</NavLink></li>
+                </>
+
+        }
+
     </>
 
     return (
@@ -94,9 +108,9 @@ const Navbar = () => {
                                                 <li className="px-2 mb-2 mt-1 text-sm">
                                                     {user.email ? user.email : "UserEmail"}
                                                 </li>
-                                                <li className="px-1 mb-2 mt-1 grid grid-cols-2 gap-2">
-                                                    <Link to="/updateProfile" onClick={() => handleLogout()} className="font-medium text-center justify-center items-center text-xs mt-3 shadow-xl bg-orange text-white border-orange focus:text-orange hover:text-orange hover:bg-transparent hover:border-2 border-2 transition-colors duration-75">Update Profile</Link>
-                                                    <Link to="/login" onClick={() => handleLogout()} className="font-medium text-center justify-center items-center text-xs mt-3 shadow-xl bg-orange text-white border-orange focus:text-orange hover:text-orange hover:bg-transparent hover:border-2 border-2 transition-colors duration-75">Logout Now</Link>
+                                                <li className="px-1 mb-2 mt-1">
+                                                    {/* <Link to="/updateProfile" onClick={() => handleLogout()} className="font-medium text-center justify-center items-center text-xs mt-3 shadow-xl bg-orange text-white border-orange focus:text-orange hover:text-orange hover:bg-transparent hover:border-2 border-2 transition-colors duration-75">Update Profile</Link> */}
+                                                    <Link to="/login" onClick={() => handleLogout()} className="font-medium text-center justify-center items-center text-sm mt-3 shadow-xl bg-orange text-white border-orange focus:text-orange hover:text-orange hover:bg-transparent hover:border-2 border-2 transition-colors duration-75">Logout</Link>
                                                 </li>
 
                                             </ul>
