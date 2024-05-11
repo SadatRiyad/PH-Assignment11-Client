@@ -45,22 +45,6 @@ const Login = () => {
             })
     };
 
-    // handleSignInWithFacebook
-    // const SignInWithFacebook = () => {
-    //     handleSignInWithFacebook()
-    //         .then(() => {
-    //             // toast("Facebook Login Successfully!", { type: "success", autoClose: 2000 });
-    //             // setTimeout(() => {
-    //             //     navigate("/");
-    //             // }, 3000);
-    //         })
-    //         .catch(() => {
-    //             toast("Invalid login credentials.", { type: "error", autoClose: 2000 })
-    //             reset();
-    //         })
-    // }
-
-
     const onSubmit = (data) => {
         // console.log(data);
         const { email, password } = data;
@@ -79,27 +63,27 @@ const Login = () => {
     };
 
     return (
-        <div className="hero card-body p-0 md:p-12 min-h-screen bg-base-300">
+        <div className="hero p-0 md:px-20 lg:px-12 lg:py-12 min-h-screen bg-base-100">
             <Helmet>
                 <title>Login | BB-QueryHub</title>
             </Helmet>
-            <div className="flex hero-content flex-col justify-around p-0 md:py-0 lg:flex-row bg-orange drop-shadow-2xl md:w-3/4 w-full">
-                <div data-aos="fade-right" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="text-center md:pr-20 lg:text-left text-white lg:ml-8">
-                    <img className="ml-12 md:-ml-4" src={loginpic} alt="" />
+            <div className="flex hero-content flex-col-reverse justify-around p-0 lg:py-0 lg:flex-row lg:pr-4 bg-orange drop-shadow-2xl lg:w-3/4 w-full">
+                <div data-aos="fade-right" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="text-center lg:text-left text-white lg:ml-8">
+                    <img className="mx-auto lg:-ml-4" src={loginpic} alt="" />
                     <h1 className="text-3xl md:text-4xl font-semibold">Welcome to <br /><span className=" font-extrabold">BB-QueryHub</span> Login...</h1>
-                    <p className="py-6 text-balance text-sm md:text-sm lg:text-base px-3 md:px-24 lg:px-0">
+                    <p className="py-6 mb-8 lg:mb-0 text-balance text-sm lg:text-base opacity-95 px-3 lg:px-0">
                         Already a member? <br /> Log in now to access your account. <br />
-                        If you have any questions or need assistance, <br /> feel free to <a className="font-bold" href="/contactUs">contact</a> our support team.
+                        If you have any questions or need assistance, <br /> feel free to <a className="font-bold underline" href="/contactUs">contact</a> our support team.
                     </p>
                 </div>
-                <div className="md:w-2/5 py-4 justify-around lg:ml-8">
-                    <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card px-2 bg-white shrink-0 w-full shadow-2xl rounded-none">
+                <div className="md:w-2/4 w-3/4 py-4 justify-around lg:ml-8 lg:pl-12">
+                    <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card px-2 ml-0 bg-white shrink-0 w-full shadow-2xl rounded-none">
                         <div className="flex justify-center w-full mt-8">
                             <div>
                                 <h5 className="text-orange font-bold text-4xl font-Rajdhani">Welcome back</h5>
                             </div>
                         </div>
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body px-6 md:px-8 pb-0">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body px-6 pb-0">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -148,19 +132,15 @@ const Login = () => {
                                 <button className="btn bg-orange hover:bg-transparent border-orange text-white hover:text-orange hover:border-orange w-full transition-all duration-200 font-bold shadow-2xl">Login</button>
                             </div>
                             <div className="mt-1">
-                                <p className="text-xs md:text-sm">New user? <Link to="/register" className="text-blue underline font-semibold">Register here</Link></p>
+                                <p className="text-xs md:text-sm">New user? <Link to="/register" className="text-orange underline font-semibold">Register here</Link></p>
                             </div>
                             <div className="divider text-tertiary font-semibold">or continue with</div>
 
                         </form>
-                        <div className="grid grid-cols-1 gap-4 mb-1 px-6 md:px-8 pb-7">
+                        <div className="grid grid-cols-1 gap-4 mb-1 px-6 pb-7">
                             <div className="mt-1">
                                 <button onClick={() => SignInWithGoogle()} className="btn bg-white hover:bg-white border-none w-full duration-200 font-bold drop-shadow-xl hover:shadow-inner hover:translate-y-[3px] transition-transform"><FcGoogle />Google</button>
                             </div>
-                            {/* <div className="mt-0">
-                                <button onClick={() => SignInWithFacebook()} className="btn bg-[#1877F2] hover:bg-transparent border-[#1877F2] text-white hover:text-[#1877F2] hover:border-[#1877F2] w-full transition-all duration-200 font-bold shadow-2xl"><FaFacebook /> Facebook</button>
-                            </div> */}
-
                         </div>
                     </div>
                 </div>

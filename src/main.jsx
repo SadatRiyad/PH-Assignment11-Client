@@ -15,6 +15,7 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx'
 // AOS
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import MyQueries from './Components/MyQueries/MyQueries.jsx'
 AOS.init();
 
 
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/myQueries",
-        element: <PrivateRoute><div>My Queries</div></PrivateRoute>,
+        element: <PrivateRoute><MyQueries></MyQueries></PrivateRoute>,
       },
       {
         path: "/myRecommendations",

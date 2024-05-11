@@ -97,7 +97,7 @@ const Navbar = () => {
                                                     <img className="rounded-full" alt="user pic" src={user.photoURL ? user.photoURL : "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
                                                 </div>
                                             </div>
-                                            <ul tabIndex={0} className="menu bg-primary text-white border-2 border-orange menu-sm dropdown-content mt-[10px] -mr-1 z-[1] p-2 shadow rounded-box">
+                                            <ul tabIndex={0} className="menu min-w-40 bg-primary text-white border-2 border-orange menu-sm dropdown-content mt-[10px] -mr-1 z-[1] p-2 shadow rounded-box">
                                                 <div className="text-sm flex items-center justify-center">
                                                     <li className="w-full px-2 py-2 text-sm text-center font-semibold bg-orange rounded-t-lg">User Profile</li>
 
