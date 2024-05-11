@@ -1,5 +1,6 @@
 import { FaArrowUp, FaLinkedin } from 'react-icons/fa6';
 import footerLogo from '../../../assets/logo.png';
+import "../Navbar/Navbar.css"
 
 const Footer = () => {
     return (
@@ -7,7 +8,7 @@ const Footer = () => {
             <div>
                 <footer className="footer footer-center p-10 bg-primary pt-20 pb-10 mx-auto">
                     <aside>
-                        <a href="#Top" className="opacity-90 text-white hover:text-white hover:-translate-y-1 transition-transform hover:opacity-100 mb-3"><FaArrowUp className='text-5xl p-1 bg-orange hover:rounded-full'></FaArrowUp></a>
+                        <a href="#Top" className="animate-bounce hover:animate-none opacity-90 text-white hover:text-white transition-transform hover:opacity-100 mb-2"><FaArrowUp className='text-5xl p-1 bg-orange hover:rounded-full'></FaArrowUp></a>
                         <img src={footerLogo} alt="footer logo" className="w-40 md:w-52 mb-4" />
                         <span className='text-3xl font-semibold text-white opacity-80 px-8 mb-2'>Welcome to  our website!</span>
                         <p className="font-semibold text-white opacity-80 text-xs text-balance">

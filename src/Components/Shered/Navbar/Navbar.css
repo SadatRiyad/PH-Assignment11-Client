@@ -13,3 +13,14 @@ a.focus{
     border-top: 1px solid #ec7210 !important;
     border-inline: 1px solid #ec7210 !important;
 }
+
+[data-theme="dark"] .navs{
+    color: white;
+}
+[data-theme="dark"] .footer{
+    background-color: #191E24;
+    border-top: 1.5px solid #1e1c1c78;
+}
+[data-theme="light"] .dropdown-content{
+    color: white;
+}

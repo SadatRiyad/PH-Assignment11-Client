@@ -90,13 +90,14 @@ const AuthProvider = ({ children }) => {
         });
         return () => unSubscribe();
     }, [render, auth]);
-
+// 
     // useEffet for loading api
     useEffect(() => {
-        const unData = fetch('https://bb-artistry-server.vercel.app/PaintingAndDrawing')
+        const unData = fetch(`${import.meta.env.VITE_API_URL}/Queries`)
             .then(res => res.json())
             .then(data => {
                 setData(data);
+                console.log(data);
             })
             .catch(err => console.log(err))
         return () => unData;
