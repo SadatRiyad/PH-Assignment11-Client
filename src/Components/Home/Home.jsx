@@ -15,13 +15,14 @@ import { Helmet } from 'react-helmet-async';
 // import FAQSection from './FAQsection/FAQsection';
 // import CraftItems from './CraftItems/CraftItems';
 // import ArtAndCraftCategories from './ArtAndCraftCategories/ArtAndCraftCategories';
-import useAuth from '../Hooks/useAuth/useAuth';
 import Banner1 from './Banner1/Banner1';
 import RecentQueryItems from './RecentQueryItems/RecentQueryItems';
+import { useLoaderData } from 'react-router-dom';
 
 
 const Home = () => {
-    const { data } = useAuth();
+    const  data  = useLoaderData();
+    console.log(data);
     const queryItemData = data;
 
     return (
@@ -75,9 +76,9 @@ const Home = () => {
                         <div className="hero-overlay bg-opacity-15"></div>
                         <div className="hero-content text-center text-neutral-content">
                             <div data-aos="zoom-in" data-aos-duration="1000" className="px-8">
-                                <h1 className="mb-6 animate-bounce hover:animate-none text-4xl text-orange lg:text-6xl md:text-5xl font-bold">Explore Product Alternatives</h1>
-                                <p className="mb-5 px-6 lg:px-24 text-orange font-semibold text-sm lg:text-base md:text-base">From everyday essentials to niche products, <br /> discover diverse recommendations tailored to your needs.</p>
-                                <a href='#queryItems' className="btn bg-orange hover:bg-orange border-orange text-white hover:text-white rounded hover:border-orange  hover:-translate-y-1 transition-all duration-200 font-bold mt-6">Find Your Match</a>
+                                <h1 className="mb-6 animate-bounce hover:animate-none text-4xl text-[#FF6347] lg:text-6xl md:text-5xl font-bold">Explore Product Alternatives</h1>
+                                <p className="mb-5 px-6 lg:px-24 text-[#FF6347] font-semibold text-sm lg:text-base md:text-base">From everyday essentials to niche products, <br /> discover diverse recommendations tailored to your needs.</p>
+                                <a href='#queryItems' className="btn bg-[#FF6347] hover:bg-[#FF6347] border-[#FF6347] text-white hover:text-white rounded hover:border-[#FF6347]  hover:-translate-y-1 transition-all duration-200 font-bold mt-6">Find Your Match</a>
                             </div>
                         </div>
                     </div>

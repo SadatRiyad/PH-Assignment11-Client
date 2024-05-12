@@ -93,7 +93,7 @@ const AuthProvider = ({ children }) => {
 // 
     // useEffet for loading api
     useEffect(() => {
-        const unData = fetch(`${import.meta.env.VITE_API_URL}/Queries`)
+        const unData = fetch(`${import.meta.env.VITE_API_URL}/queries`)
             .then(res => res.json())
             .then(data => {
                 setData(data);

@@ -14,11 +14,17 @@ export default {
         red: "#bb2e2e",
         color1: "#a1c4fd",
         color2: "#c2e9fb",
-        'custom-gray': '#f8f8f8',
-        'custom-gray-dark': '#666',
-        'custom-blue': '#007bff',
-        'custom-blue-dark': '#0056b3',
+        "custom-gray": "#f8f8f8",
+        "custom-gray-dark": "#666",
+        "custom-blue": "#007bff",
+        "custom-blue-dark": "#0056b3",
       },
+      backgroundImage: {
+        "gradient-orange": "linear-gradient(45deg, #FFA500, #FF6347)",
+      },
+      borderColor: (theme) => ({
+        "gradient-orange": theme("colors.orange.500"), // Using Tailwind CSS color palette
+      }),
     },
   },
   plugins: [require("daisyui")],

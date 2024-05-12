@@ -16,6 +16,7 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import MyQueries from './Components/MyQueries/MyQueries.jsx'
+import AddQuery from './Components/AddQuery/AddQuery.jsx'
 AOS.init();
 
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/queries/recent`),
       },
       {
         path: "/login",
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/queries",
+        path: "/allQueries",
         element: <Queries></Queries>,
       },
       {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
       {
         path: "/contactUs",
         element: <div>Contact Us</div>,
+      },
+      {
+        path: "/addQuery",
+        element: <PrivateRoute><AddQuery></AddQuery></PrivateRoute>,
+      },
+      {
+        path: "/queries/id/:id",
+        element: <div>Query Details</div>,
       }
     ],
   },

@@ -11,7 +11,7 @@ const Banner1 = () => {
                     Embark on a journey to discover answers, insights, and solutions. <br /> Dive deep into a diverse universe of queries.
                 </p>
                 <Link
-                    to="/queries"
+                    to="/allQueries"
                     className="inline-block bg-orange hover:bg-orange-dark text-p-color py-3 px-6 rounded-full font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105"
                 >
                     Explore All Queries

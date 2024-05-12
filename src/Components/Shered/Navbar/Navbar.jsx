@@ -35,7 +35,7 @@ const Navbar = () => {
             user ?
                 <>
                     <li><NavLink to="/" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Home</NavLink></li>
-                    <li><NavLink to="/queries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
+                    <li><NavLink to="/allQueries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
                     <li><NavLink to="/recommendationsForMe" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Recommendations For Me</NavLink></li>
                     <li><NavLink to="/myQueries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">My Queries</NavLink></li>
                     <li><NavLink to="/myRecommendations" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">My Recommendations</NavLink></li>
@@ -44,7 +44,7 @@ const Navbar = () => {
                 :
                 <>
                     <li><NavLink to="/" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Home</NavLink></li>
-                    <li><NavLink to="/queries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
+                    <li><NavLink to="/allQueries" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Queries</NavLink></li>
                     <li><NavLink to="/contactUs" className="hover:text-orange focus:text-orange hover:bg-transparent transition-colors duration-75 mr-[2px]">Contact Us</NavLink></li>
                 </>
 
