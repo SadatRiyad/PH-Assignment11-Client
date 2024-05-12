@@ -33,6 +33,7 @@ const RecentQueryItems = ({ queryItemData }) => {
             </div>
             <div className='w-full mt-10 text-center'>
                 <Link
+                    data-aos="zoom-in" data-aos-duration="600" data-aos-anchor-placement="top-bottom" data-aos-delay="50"
                     to="/allQueries"
                     className="inline-block bg-base-100 border-[#FF6347] border-[1.5px] hover:bg-orange-dark text-[#FF6347] py-3 px-6 rounded-md font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105"
                 >

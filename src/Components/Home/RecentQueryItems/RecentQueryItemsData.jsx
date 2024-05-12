@@ -32,7 +32,7 @@ const RecentQueryItemsData = ({ query }) => {
             <img
                 src={productImageURL}
                 alt={productName}
-                className="w-full min-h-40 border-2 border-[#FF6347] max-h-60 object-cover rounded-md mb-3"
+                className="w-full min-h-48 md:min-h-52 border-2 border-[#FF6347] lg:max-h-60 object-cover rounded-md mb-3"
             />
             <div data-aos="fade-right" data-aos-duration="600" data-aos-anchor-placement="top-bottom" data-aos-delay="0" className='card-body pb-4 break-words items-start text-left px-1 pt-4'>
                 <div>
@@ -57,7 +57,7 @@ const RecentQueryItemsData = ({ query }) => {
                         <img
                             src={userImageUrl}
                             alt={userName}
-                            className="w-8 h-8 mr-3 rounded-full ring ring-[#FF6347] ring-offset-white ring-offset-2"
+                            className="w-8 h-8 mr-2 md:mr-3 rounded-full ring ring-[#FF6347] ring-offset-white ring-offset-2"
                         />
                         <div>
                             <p className="text-sm text-primary font-semibold">{userName}</p>

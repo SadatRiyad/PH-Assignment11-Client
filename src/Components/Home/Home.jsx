@@ -18,6 +18,9 @@ import { Helmet } from 'react-helmet-async';
 import Banner1 from './Banner1/Banner1';
 import RecentQueryItems from './RecentQueryItems/RecentQueryItems';
 import { useLoaderData } from 'react-router-dom';
+import Testimonials from '../Testimonials/Testimonials';
+// import Banner2 from './Banner2/Banner2';
+import FAQSection from './FAQSection/FAQSection';
 
 
 const Home = () => {
@@ -83,13 +86,12 @@ const Home = () => {
                         </div>
                     </div>
                 </SwiperSlide>
-
             </Swiper>
             <Banner1></Banner1>
             <RecentQueryItems queryItemData={queryItemData}></RecentQueryItems>
-            {/* <ArtAndCraftCategories craftItemData={craftItemData}></ArtAndCraftCategories>
-            <Banner2></Banner2>
-            <FAQSection></FAQSection> */}
+            <Testimonials></Testimonials>
+            {/* <Banner2></Banner2> */}
+            <FAQSection></FAQSection> 
         </div>
     );
 };
