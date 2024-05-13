@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { FaCommentAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const RecentQueryItemsData = ({ query }) => {
@@ -52,7 +53,7 @@ const RecentQueryItemsData = ({ query }) => {
                 <p className="text-sm text-gray-600 mb-3">
                     <span className="font-semibold">Date Posted:</span> {datePosted}
                 </p>
-                <div className="flex justify-between items-center w-full gap-2">
+                <div className="flex justify-between items-center w-full gap-2 mt-2">
                     <div data-aos="fade-right" data-aos-duration="600" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="flex items-center">
                         <img
                             src={userImageUrl}
@@ -61,11 +62,11 @@ const RecentQueryItemsData = ({ query }) => {
                         />
                         <div>
                             <p className="text-sm text-primary font-semibold">{userName}</p>
-                            <p className="text-xs text-gray-600 font-medium">{userEmail}</p>
+                            <p className="text-[10px] text-gray-600 font-medium">{userEmail}</p>
                         </div>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="600" data-aos-anchor-placement="top-bottom" data-aos-delay="50" >
-                        <Link to={`/queries/id/${_id}`} className="btn bg-[#FF6347] hover:bg-transparent border-[#FF6347] text-white hover:text-[#FF6347] rounded hover:border-[#FF6347] transition-all duration-200 font-bold mt-0">View Details </Link>
+                        <Link to={`/queries/id/${_id}`} className="btn-xs border flex justify-center items-center gap-1 py-4 bg-[#FF6347] hover:bg-transparent border-[#FF6347] text-white hover:text-[#FF6347] rounded-full text-[10px] px-4 hover:border-[#FF6347] transition-all duration-200 font-bold mt-0"><FaCommentAlt /> Recommend</Link>
                     </div>
             
                 </div>

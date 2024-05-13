@@ -17,6 +17,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import MyQueries from './Components/MyQueries/MyQueries.jsx'
 import AddQuery from './Components/AddQuery/AddQuery.jsx'
+import ContactUs from './Components/ContactUs/ContactUs.jsx'
+import QueryDetails from './Components/QueryDetails/QueryDetails.jsx'
+import UpdateQuery from './Components/UpdateQuery/UpdateQuery.jsx'
 AOS.init();
 
 
@@ -57,16 +60,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/contactUs",
-        element: <div>Contact Us</div>,
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/addQuery",
         element: <PrivateRoute><AddQuery></AddQuery></PrivateRoute>,
       },
       {
-        path: "/queries/id/:id",
-        element: <div>Query Details</div>,
-      }
+        path: "/updateQuery/id/:id",
+        element: <PrivateRoute><UpdateQuery></UpdateQuery></PrivateRoute>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/queries/id/${params.id}`),
+      },
+      {
+        path: "/queryDetails/id/:id",
+        element: <PrivateRoute><QueryDetails></QueryDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/queries/id/${params.id}`),
+      },
     ],
   },
 ]);

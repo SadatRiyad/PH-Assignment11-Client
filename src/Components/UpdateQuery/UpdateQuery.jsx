@@ -3,21 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import useAuth from '../Hooks/useAuth/useAuth';
 import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
 
-const AddQuery = () => {
-    const { auth } = useAuth();
+const UpdateQuery = () => {
+    const data = useLoaderData();
+    const { productName, productBrand, productImageURL, queryTitle, boycottingReason, datePosted ,_id} = data;
+    // console.log(productName, productBrand, productImageURL, queryTitle, boycottingReason, userEmail, userName, userImageUrl, datePosted)
+    const { auth, setRender1, render1 } = useAuth();
     const currentUser = auth.currentUser;
     // console.log(currentUser)
 
     const [formData, setFormData] = useState({
-        productName: '',
-        productBrand: '',
-        productImageURL: '',
-        queryTitle: '',
-        boycottingReason: '',
+        productName: `${productName}`,
+        productBrand: `${productBrand}`,
+        productImageURL: `${productImageURL}`,
+        queryTitle: `${queryTitle}`,
+        boycottingReason: `${boycottingReason}`,
         userEmail: `${currentUser?.email}`,
         userName: `${currentUser?.displayName}`,
         userImageUrl: `${currentUser?.photoURL}`,
+        datePosted: `${datePosted}`
     });
 
     const handleChange = (e) => {
@@ -27,6 +32,8 @@ const AddQuery = () => {
             [name]: value
         });
     };
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,47 +47,35 @@ const AddQuery = () => {
 
             const queryData = {
                 ...formData,
-                datePosted: formattedDate,
-                recommendationCount: 0 // Initial recommendation count
+                updateDatePosted: formattedDate,
             };
 
-            // Send a POST request to your server to add the query
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/queries/addQuery`, queryData);
-            console.log('Query added successfully:', response.data);
+            // Send a PUT request to your server to Update the query
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}/queries/id/${_id}`, queryData);
+            console.log('Query update successfully:', response.data);
 
             if (response.data.acknowledged == true) {
-                toast.success('Query added successfully!', { autoClose: 2000 });
-                setFormData({
-                    productName: '',
-                    productBrand: '',
-                    productImageURL: '',
-                    queryTitle: '',
-                    boycottingReason: '',
-                    userEmail: `${currentUser?.email}`,
-                    userName: `${currentUser?.displayName}`,
-                    userImageUrl: `${currentUser?.photoURL}`,
-                });
-            } else {
-                toast.error('Failed to add query. Please try again.');
+                toast.success('Query update successfully!', { autoClose: 2000 });
+                setRender1(!render1);
             }
         } catch (error) {
-            console.error('Error adding query:', error.message);
-            toast.error('An error occurred while adding the query. Please try again.');
+            console.error('Error updatting query:', error.message);
+            toast.error('An error occurred while updatting the query. Please try again.');
         }
+
+
     };
 
     return (
         <div className="hero card-body px-4 md:px-12 min-h-screen" style={{ background: 'radial-gradient(circle, #ffa500,#ffa500,#ffd700,#ffa500, #ffa500)' }}>
             <Helmet>
-                <title>Add Query | BB-QueryHub</title>
+                <title>Update Query | BB-QueryHub</title>
             </Helmet>
             <div className="justify-center flex w-full">
                 <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card px-6 shrink-0 w-full md:w-3/4 md:px-8 shadow-2xl bg-secondary">
                     <div className="flex justify-center w-full mt-8">
                         <div className='text-base-300'>
-                            <h5 className="font-bold text-base-300 text-3xl md:text-4xl text-center mb-8 mt-3">Add New Query...</h5>
-                            <p className='text-sm text-balance font-semibold text-center px-4'>Hello <span className='text-orange capitalize font-extrabold'>{currentUser?.displayName}</span>, Your Name and Your Email <span className='text-orange font-extrabold'>{currentUser?.email}</span> is used to Add Query, <br />Now, Submit your query and let our community suggest better alternatives! <br /> Fill in the details below to add a new Query to the site.</p>
-                            <p className='mb-6 text-balance text-sm font-semibold text-center text-orange mt-2'>Note: All fields are required.</p>
+                            <h5 className="font-bold text-base-300 text-2xl md:text-4xl text-center mb-8 mt-3">Update Query for: <span className='text-orange'>{productName}</span></h5>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit}>
@@ -150,8 +145,8 @@ const AddQuery = () => {
                         </div>
 
 
-                        <button type="submit" className="btn mb-8 mt-2 bg-orange border-orange w-full text-white hover:bg-transparent hover:text-orange hover:border-orange">
-                            Add Query
+                        <button type="submit" className="btn mb-8 mt-3 bg-orange border-orange w-full text-white hover:bg-transparent hover:text-orange hover:border-orange">
+                            Update Query
                         </button>
                     </form>
                 </div>
@@ -161,4 +156,4 @@ const AddQuery = () => {
     );
 };
 
-export default AddQuery;
+export default UpdateQuery;

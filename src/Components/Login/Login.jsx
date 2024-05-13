@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet-async";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from "../Hooks/useAuth/useAuth";
-import loginpic from "../../assets/images-removebg-preview.png"
+import loginpic from "../../assets/login.png"
 
 
 const Login = () => {
@@ -67,17 +67,21 @@ const Login = () => {
             <Helmet>
                 <title>Login | BB-QueryHub</title>
             </Helmet>
-            <div className="flex hero-content flex-col-reverse justify-around p-0 lg:py-0 lg:flex-row lg:pr-4 bg-secondary drop-shadow-2xl lg:w-3/4 w-full lg:rounded-xl">
-                <div data-aos="fade-right" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="text-center lg:text-left text-white lg:ml-8">
-                    <img className="mx-auto lg:-ml-4" src={loginpic} alt="" />
-                    <h1 className="text-3xl md:text-4xl font-semibold">Welcome to <br /><span className=" font-extrabold text-orange">BB-QueryHub</span> Login...</h1>
-                    <p className="py-6 mb-8 lg:mb-0 text-balance text-sm lg:text-base opacity-95 px-3 lg:px-0">
+            <div className="flex hero-content flex-col justify-around p-0 lg:py-0 lg:flex-row lg:pr-4 bg-secondary drop-shadow-2xl lg:w-3/4 w-full lg:rounded-xl">
+                <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="text-center lg:text-left text-white lg:ml-8 flex flex-col-reverse">
+                    <div className="w-[80%] lg:w-full lg:mt-6 mx-auto">
+                        <img className="mx-auto -mt-6 lg:mt-0 w-full rounded-lg" src={loginpic} alt="" />
+                    </div>
+                    <div>
+                    <h1 className="text-2xl md:text-4xl font-semibold mt-8">Welcome to <br /><span className=" font-extrabold text-orange">BB-QueryHub</span> Login...</h1>
+                    <p className="py-6 mb-8 lg:mb-0 text-balance text-xs lg:text-base opacity-95 px-3 lg:px-0">
                         Already a member? <br /> Log in now to access your account. <br />
                         If you have any questions or need assistance, <br /> feel free to <a className="font-bold underline text-orange" href="/contactUs">contact</a> our support team.
                     </p>
+                    </div>
                 </div>
                 <div className="md:w-3/4 w-5/6 lg:w-2/4 py-8 justify-around lg:ml-8 lg:pl-12">
-                    <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card px-2 ml-0 bg-white shrink-0 w-full shadow-2xl ">
+                    <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card px-2 ml-0 bg-white shrink-0 w-full shadow-2xl ">
                         <div className="flex justify-center w-full mt-8">
                             <div>
                                 <h5 className="text-orange font-bold text-4xl font-Rajdhani">Welcome back</h5>

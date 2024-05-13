@@ -1,4 +1,11 @@
-// Import Swiper React components
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Helmet } from 'react-helmet-async';
+import Banner1 from './Banner1/Banner1';
+import RecentQueryItems from './RecentQueryItems/RecentQueryItems';
+import { useLoaderData } from 'react-router-dom';
+import Testimonials from '../Testimonials/Testimonials';
+// import Banner2 from './Banner2/Banner2';
+import FAQSection from './FAQSection/FAQSection';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import { useLoaderData } from "react-router-dom";
 // Import Swiper styles
@@ -7,20 +14,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './Home.css';
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Helmet } from 'react-helmet-async';
-// import Banner1 from './Banner1/Banner1';
-// import Banner2 from './Banner2/Banner2';
-// import FAQSection from './FAQsection/FAQsection';
-// import CraftItems from './CraftItems/CraftItems';
-// import ArtAndCraftCategories from './ArtAndCraftCategories/ArtAndCraftCategories';
-import Banner1 from './Banner1/Banner1';
-import RecentQueryItems from './RecentQueryItems/RecentQueryItems';
-import { useLoaderData } from 'react-router-dom';
-import Testimonials from '../Testimonials/Testimonials';
-// import Banner2 from './Banner2/Banner2';
-import FAQSection from './FAQSection/FAQSection';
 
 
 const Home = () => {

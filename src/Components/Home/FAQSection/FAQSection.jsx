@@ -35,13 +35,13 @@ const FAQSection = () => {
                         data-aos-duration="700"
                         data-aos-anchor-placement="top-bottom"
                         data-aos-delay={index * 100}
-                        className="rounded-lg overflow-hidden shadow-md bg-white border border-gray-200"
+                        className="rounded-lg overflow-hidden shadow-md bg-white border border-gray-200 hover:bg-orange text-gray-800 hover:text-white"
                     >
                         <div className="p-4 border-b border-gray-200">
-                            <h3 className="text-lg text-gray-900 font-semibold text-blue-600">{item.question}</h3>
+                            <h3 className="text-lg font-semibold text-blue-600">{item.question}</h3>
                         </div>
                         <div className="p-4">
-                            <p className="text-base text-gray-700">{item.answer}</p>
+                            <p className="text-base">{item.answer}</p>
                         </div>
                     </div>
                 ))}

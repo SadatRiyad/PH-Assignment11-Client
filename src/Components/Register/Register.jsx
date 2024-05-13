@@ -54,7 +54,7 @@ const Register = () => {
             </Helmet>
             <div className="flex hero-content flex-col-reverse lg:flex-row lg:justify-around p-0 lg:py-0 lg:pr-4 bg-secondary lg:rounded-xl drop-shadow-2xl lg:w-3/4 w-full">
                 <div className="md:w-3/4 w-5/6 lg:w-3/4 py-8 justify-around lg:ml-8">
-                    <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card lg:mr-6 px-2 ml-0 bg-white shrink-0 w-full shadow-2xl">
+                    <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card lg:mr-6 px-2 ml-0 bg-white shrink-0 w-full shadow-2xl">
                         <div className="flex justify-center w-full mt-8">
                             <div>
                                 <h5 className="text-orange font-bold text-4xl font-Rajdhani">Register Here</h5>
@@ -200,7 +200,7 @@ const Register = () => {
                         </form>
                     </div>
                 </div>
-                <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="text-center lg:text-left text-white lg:ml-8">
+                <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="text-center lg:text-left text-white lg:ml-8">
                     <div className="px-4 lg:pl-0"><img className="mx-auto mt-4 mb-8 border-2" src={registerPic} alt="Register" /></div>
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
                         Welcome to <br />
