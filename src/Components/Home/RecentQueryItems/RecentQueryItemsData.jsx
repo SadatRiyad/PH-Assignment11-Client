@@ -41,7 +41,7 @@ const RecentQueryItemsData = ({ query }) => {
                 </div>
                 <div>
                     <p className="card-normal text-sm text-gray-600 mb-1">
-                        <span className="font-semibold">Product:</span> {productName}
+                        <span className="font-semibold">Product Name:</span> {productName}
                     </p>
                     <p className="text-sm text-gray-600 mb-1"><span className='font-semibold'>Brand:</span> {productBrand} </p>
                     <p className="text-sm text-gray-600 break-words mb-0">
@@ -66,9 +66,9 @@ const RecentQueryItemsData = ({ query }) => {
                         </div>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="600" data-aos-anchor-placement="top-bottom" data-aos-delay="50" >
-                        <Link to={`/queries/id/${_id}`} className="btn-xs border flex justify-center items-center gap-1 py-4 bg-[#FF6347] hover:bg-transparent border-[#FF6347] text-white hover:text-[#FF6347] rounded-full text-[10px] px-4 hover:border-[#FF6347] transition-all duration-200 font-bold mt-0"><FaCommentAlt /> Recommend</Link>
+                        <Link to={`/queryDetails/id/${_id}`} className="btn-xs border flex justify-center items-center gap-1 py-4 bg-[#FF6347] hover:bg-transparent border-[#FF6347] text-white hover:text-[#FF6347] rounded-full text-[10px] px-4 hover:border-[#FF6347] transition-all duration-200 font-bold mt-0"><FaCommentAlt /> Recommend</Link>
                     </div>
-            
+        
                 </div>
             </div>
         </div>

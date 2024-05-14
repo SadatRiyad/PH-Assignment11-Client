@@ -69,7 +69,7 @@ const MyQueriesCard = ({ query }) => {
         });
     }
     return (
-        <div className="card recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 mb-4 shadow-lg">
+        <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 mb-4 shadow-lg">
             <img
                 src={productImageURL}
                 alt={productName}
@@ -95,7 +95,7 @@ const MyQueriesCard = ({ query }) => {
             </div>
             <div className="card-body p-0">
                 <h3 className="text-lg font-bold text-primary mb-1">{queryTitle}</h3>
-                <p className="text-sm text-gray-600 mb-0"><span className="font-semibold">Product:</span> {productName}</p>
+                <p className="text-sm text-gray-600 mb-0"><span className="font-semibold">Product Name:</span> {productName}</p>
                 <p className="text-sm text-gray-600 mb-0"><span className="font-semibold">Brand:</span> {productBrand}</p>
                 <p className="text-sm text-gray-600 break-words mb-0">
                     <span className="font-semibold">Alternation Reason:</span> {

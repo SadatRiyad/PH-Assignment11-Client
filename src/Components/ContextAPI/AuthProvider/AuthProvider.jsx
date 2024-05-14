@@ -97,7 +97,7 @@ const AuthProvider = ({ children }) => {
             .then(res => res.json())
             .then(data => {
                 setData(data);
-                console.log(data);
+                // console.log(data);
             })
             .catch(err => console.log(err))
         return () => unData;

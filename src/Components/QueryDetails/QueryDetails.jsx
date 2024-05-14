@@ -1,11 +1,243 @@
+/* eslint-disable react/prop-types */
 import { useLoaderData } from "react-router-dom";
+import { FaCommentAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import useAuth from "../Hooks/useAuth/useAuth";
+import { toast } from "react-toastify";
 
 const QueryDetails = () => {
-    const data = useLoaderData();
-    console.log(data)
+    const [query, setQuery] = useState(useLoaderData());
+    const queryId = query._id;
+    const { auth, render1, setRender1 } = useAuth();
+    const currentUser = auth.currentUser;
+    // const [recommendation, setRecommendation] = useState(query.recommendations);    
+    const [recommendations, setRecommendations] = useState([]);
+
+    useEffect(() => {
+        // Fetch query details and associated recommendations
+        const fetchQueryDetails = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/queries`);
+                const fetchedQuery = response.data.find((q) => q._id === queryId);
+
+                if (fetchedQuery) {
+                    setQuery(fetchedQuery);
+                    setRecommendations(fetchedQuery.recommendations || []);
+                } else {
+                    // Handle query not found
+                    console.error("Query not found");
+                }
+            } catch (error) {
+                console.error("Error fetching query details:", error);
+            }
+        };
+
+        fetchQueryDetails();
+    }, [queryId, render1]);
+
+    if (!query) {
+        <div className="flex w-full items-center justify-center h-screen"><span className="loading loading-spinner loading-lg"></span></div>
+    }
+    console.log(recommendations);
+
+    const {
+        _id,
+        productImageURL,
+        queryTitle,
+        productName,
+        productBrand,
+        boycottingReason,
+        datePosted,
+        userName,
+        userEmail,
+        userImageUrl,
+        recommendationCount,
+        updateDatePosted
+    } = query;
+
+    const [formData, setFormData] = useState({
+        recommendationTitle: "",
+        recommendedProductName: "",
+        recommendedProductImageURL: "",
+        recommendationReason: "",
+        recommendedUserEmail: `${currentUser?.email}`,
+        recommendedUserName: `${currentUser?.displayName}`,
+        recommendedUserImageUrl: `${currentUser?.photoURL}`,
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const currentDate = new Date();
+
+            // Set the timezone to Bangladesh (BD)
+            const options = { timeZone: 'Asia/Dhaka' };
+            const formattedDate = currentDate.toLocaleString('en-US', options);
+
+            const queryData = {
+                ...formData,
+                timestamp: formattedDate,
+            };
+
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/queries/${_id}/recommendations`,
+                queryData
+            );
+
+            console.log(response.data); // Handle success or error response
+            toast.success('Recommendation added successfully!', { autoClose: 2000 });
+            setRender1(!render1);
+
+            // Reset form after successful submission
+            setFormData({
+                recommendationTitle: "",
+                recommendedProductName: "",
+                recommendedProductImageURL: "",
+                recommendationReason: "",
+                recommendedUserEmail: `${currentUser?.email}`,
+                recommendedUserName: `${currentUser?.displayName}`,
+                recommendedUserImageUrl: `${currentUser?.photoURL}`,
+            });
+        } catch (error) {
+            console.error("Error adding recommendation:", error.message);
+            toast.error('An error occurred while adding the recommendation. Please try again.');
+        }
+    };
+
     return (
-        <div>
-            
+        <div className="card lg:px-20 lg:py-8 recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 shadow-lg">
+            <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="flex justify-between items-center mb-2">
+                <div className='flex items-center'>
+                    <div>
+                        <img
+                            src={userImageUrl}
+                            alt={userName}
+                            className="w-10 h-10 lg:w-14 lg:h-14 mr-2 rounded-full border-2 border-white"
+                        />
+                    </div>
+                    <div>
+                        <p className="text-sm lg:text-lg text-primary font-semibold">{userName}</p>
+                        <p className="text-xs lg:text-base text-gray-600">{userEmail}</p>
+                    </div>
+                </div>
+                {/* recommend */}
+                <div className='tooltip tooltip-left tooltip-warning' data-tip="↓ Go below or Click to Recommend Now ↓">
+                    <a href="#Recommend" className="btn-xs border-2 flex justify-center items-center gap-1 py-4 lg:py-6 lg:px-12 bg-[#FF6347] hover:scale-105 border-[#FF6347] text-white rounded-full text-[14px] lg:text-lg px-8 shadow-xl transition-all duration-200 font-bold mt-0"><FaCommentAlt /> {recommendationCount}</a>
+                </div>
+
+            </div>
+            <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card-body p-0 lg:my-2">
+                <div className='my-4'>
+                    <h3 className="text-lg md:text-2xl lg:text-5xl font-bold text-primary mb-1 lg:mb-4">{queryTitle}</h3>
+                    <p className="text-sm lg:text-lg text-gray-800 mb-1 mt-2"><span className="font-semibold">Product Name:</span> {productName}</p>
+                    <p className="text-sm lg:text-lg text-gray-800 mb-1"><span className="font-semibold">Brand:</span> {productBrand}</p>
+                    <p className="text-sm lg:text-lg text-gray-800 break-words mb-1">
+                        <span className="font-semibold">Alternation Reason:</span> {boycottingReason}
+                    </p>
+                    <p className="text-sm lg:text-lg text-gray-800 mb-1"><span className="font-semibold">Posted Date & Time:</span> {datePosted}</p>
+                    {
+                        updateDatePosted && <p className="text-sm lg:text-lg text-gray-800"><span className="font-semibold">Query Last Updated:</span> {updateDatePosted}</p>
+                    }
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="relative w-full">
+                <img
+                    src={productImageURL}
+                    alt={productName}
+                    className="w-full min-h-48 max-h-80 lg:max-h-96 object-contain rounded-md mt-6 mb-6 bg-base-300 border-2 border-orange bg-gradient-to-t from-gray-200 via-gray-300 to-transparent backdrop-blur-lg inset-0"
+                />
+
+
+                      {/* Render recommendations */}
+      <div className="recommendations-container">
+        <h3>Recommendations ({recommendations.length})</h3>
+        {recommendations.map((recommendation) => (
+          <div key={recommendation.id} className="recommendation-item">
+            <p>Title: {recommendation.recommendationTitle}</p>
+            <p>Product Name: {recommendation.recommendedProductName}</p>
+            <p>Reason: {recommendation.recommendationReason}</p>
+            {/* Add additional fields as needed */}
+          </div>
+        ))}
+      </div>
+
+
+                {/* Recommend button */}
+                <div className='md:mt-8 w-full' id="Recommend">
+                    <div className="flex gap-2 mb-1 justify-between w-full">
+                        <button className="btn-xs flex text-lg w-full items-center bg-orange opacity-80 hover:opacity-100 text-white hover:bg-orange rounded-full py-6 lg:text-2xl lg:py-8 text-center justify-center px-4" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                            <FaCommentAlt className="mr-2" />Click here for Recommend box
+                        </button>
+                        <dialog id="my_modal_3" className="modal">
+                            <div className="modal-box">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                </form>
+                                <div>
+                                    <h2>Add Recommendation</h2>
+                                    <form onSubmit={handleSubmit}>
+                                        <input
+                                            type="text"
+                                            name="recommendationTitle"
+                                            placeholder="Recommendation Title"
+                                            value={formData.recommendationTitle}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            name="recommendedProductName"
+                                            placeholder="Recommended Product Name"
+                                            value={formData.recommendedProductName}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <input
+                                            type="url"
+                                            name="recommendedProductImageURL"
+                                            placeholder="Recommended Product Image URL"
+                                            value={formData.recommendedProductImageURL}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <textarea
+                                            name="recommendationReason"
+                                            placeholder="Recommendation Reason"
+                                            value={formData.recommendationReason}
+                                            onChange={handleChange}
+                                            required
+                                        ></textarea>
+                                        {/* Hidden fields for user email and name */}
+                                        <input
+                                            type="hidden"
+                                            name="userEmail"
+                                            value={formData.userEmail}
+                                        />
+                                        <input
+                                            type="hidden"
+                                            name="userName"
+                                            value={formData.userName}
+                                        />
+                                        <button type="submit">Add Recommendation</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+                {/* <AddRecommendation></AddRecommendation> */}
+            </div>
         </div>
     );
 };

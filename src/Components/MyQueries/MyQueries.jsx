@@ -41,7 +41,7 @@ const MyQueries = () => {
                 <title>My Queries | BB-QueryHub</title>
             </Helmet>
             <div className="pb-1 pt-1 bg-cyan-950 px-1">
-                <div className=" mt-8" id="myQueries">
+                <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="mt-8" id="myQueries">
                     <div className="hero w-full h-[50vh]" style={{ backgroundImage: 'url(https://static.vecteezy.com/system/resources/thumbnails/005/239/318/small/abstract-fluid-blue-wave-banner-background-illustration-vector.jpg)' }}>
                         <div className="hero-overlay bg-opacity-10"></div>
                         <div className="hero-content text-center text-neutral-content bg-blend-saturation">
@@ -67,18 +67,18 @@ const MyQueries = () => {
                     </div>
 
                 </div>
-                <div className="flex justify-between items-center mb-4 m-4 border-b pb-2">
+                <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="flex justify-between items-center mb-4 m-4 border-b pb-2">
                     <h2 className="text-xl md:text-3xl font-bold text-orange">My Total Queries: {queries.length}</h2>
                     <Link to="/addQuery" className="bg-orange hover:bg-orange-dark text-white font-bold py-2 px-4 text-base rounded">
                         Add Query
                     </Link>
                 </div>
 
-                <div className="px-4">
+                <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="px-4">
                     <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className={'mb-32'}>
-                        <TabList className="rounded-md bg-orange p-2 w-fit mx-auto flex text-white items-center justify-center focus:bg-orange text-center">
-                            <Tab className="active:bg-base-100 px-4 py-2">Queries in Multiple Card View</Tab>
-                            <Tab className="active:bg-base-100 px-4 py-2">Queries in Single Card View</Tab>
+                        <TabList className="rounded-md bg-orange p-2 w-fit mx-auto hidden md:flex text-white items-center justify-center focus:bg-orange text-center">
+                            <Tab className="active:bg-base-100 px-4 py-2">Multiple Card View</Tab>
+                            <Tab className="active:bg-base-100 px-4 py-2">Single Card View</Tab>
                         </TabList>
                         <TabPanel>
                             <div className="mt-12">

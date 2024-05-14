@@ -56,7 +56,7 @@ const Home = () => {
 
                 <SwiperSlide>
                     <div className="hero a2 min-h-screen">
-                        <div className="hero-overlay bg-opacity-30"></div>
+                        <div className="hero-overlay bg-opacity-20"></div>
                         <div data-aos="zoom-in" data-aos-duration="1000" className="hero-content text-center text-neutral-content">
                             <div className="px-8" data-aos="zoom-in" data-aos-duration="1000">
                                 <h1 className="mb-8  opacity-85 text-4xl lg:text-6xl md:text-5xl font-extrabold text-primary">Discover New Recommendations</h1>
