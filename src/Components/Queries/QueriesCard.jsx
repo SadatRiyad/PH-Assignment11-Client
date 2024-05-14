@@ -22,9 +22,9 @@ const QueriesCard = ({ query }) => {
 
     return (
         <Link to={`/queryDetails/id/${_id}`}>
-            <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card hover:shadow-2xl hover:-translate-y-1 transition-all recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 mb-6 shadow-lg">
+            <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card min-h-full hover:shadow-2xl hover:-translate-y-1 transition-all recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 mb-6 shadow-lg">
 
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-2 mt-1">
                     <div className='flex items-center'>
                         <div>
                             <img
@@ -61,11 +61,11 @@ const QueriesCard = ({ query }) => {
                     } */}
                     </div>
                 </div>
-                <div>
+                <div className="">
                     <img
                         src={productImageURL}
                         alt={productName}
-                        className="w-full min-h-48 max-h-80 object-contain rounded-md mb-3 bg-base-300 border-2 border-orange"
+                        className="flex-1 w-full min-h-40 md:min-h-48 max-h-80 object-contain rounded-md mb-3 bg-base-300 border-2 border-orange"
                     />
                 </div>
             </div>

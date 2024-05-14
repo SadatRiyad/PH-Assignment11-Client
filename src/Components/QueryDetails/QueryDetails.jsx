@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../Hooks/useAuth/useAuth";
 import { toast } from "react-toastify";
+import AllRecommendation from "./AllRecommendation";
 
 const QueryDetails = () => {
     const [query, setQuery] = useState(useLoaderData());
@@ -13,6 +14,25 @@ const QueryDetails = () => {
     const currentUser = auth.currentUser;
     // const [recommendation, setRecommendation] = useState(query.recommendations);    
     const [recommendations, setRecommendations] = useState([]);
+
+    if (!query) {
+        <div className="flex w-full items-center justify-center h-screen"><span className="loading loading-spinner loading-lg"></span></div>
+    }
+
+    const {
+        _id,
+        productImageURL,
+        queryTitle,
+        productName,
+        productBrand,
+        boycottingReason,
+        datePosted,
+        userName,
+        userEmail,
+        userImageUrl,
+        recommendationCount,
+        updateDatePosted
+    } = query;
 
     useEffect(() => {
         // Fetch query details and associated recommendations
@@ -35,26 +55,6 @@ const QueryDetails = () => {
 
         fetchQueryDetails();
     }, [queryId, render1]);
-
-    if (!query) {
-        <div className="flex w-full items-center justify-center h-screen"><span className="loading loading-spinner loading-lg"></span></div>
-    }
-    console.log(recommendations);
-
-    const {
-        _id,
-        productImageURL,
-        queryTitle,
-        productName,
-        productBrand,
-        boycottingReason,
-        datePosted,
-        userName,
-        userEmail,
-        userImageUrl,
-        recommendationCount,
-        updateDatePosted
-    } = query;
 
     const [formData, setFormData] = useState({
         recommendationTitle: "",
@@ -115,7 +115,7 @@ const QueryDetails = () => {
     };
 
     return (
-        <div className="card lg:px-20 lg:py-8 recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 shadow-lg">
+        <div className="card lg:px-20 lg:py-8 recent-query-card bg-gradient-to-b from-orange via-base-300 to-orange rounded-lg p-5 shadow-lg">
             <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="flex justify-between items-center mb-2">
                 <div className='flex items-center'>
                     <div>
@@ -131,7 +131,7 @@ const QueryDetails = () => {
                     </div>
                 </div>
                 {/* recommend */}
-                <div className='tooltip tooltip-left tooltip-warning' data-tip="↓ Go below or Click to Recommend Now ↓">
+                <div className='tooltip tooltip-left tooltip-warning' data-tip="↓ Go below to Recommend Now ↓">
                     <a href="#Recommend" className="btn-xs border-2 flex justify-center items-center gap-1 py-4 lg:py-6 lg:px-12 bg-[#FF6347] hover:scale-105 border-[#FF6347] text-white rounded-full text-[14px] lg:text-lg px-8 shadow-xl transition-all duration-200 font-bold mt-0"><FaCommentAlt /> {recommendationCount}</a>
                 </div>
 
@@ -153,44 +153,30 @@ const QueryDetails = () => {
             <div data-aos="fade-up" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="relative w-full">
                 <img
                     src={productImageURL}
-                    alt={productName}
+                    alt={`Query Poduct ${productName} Image`}
                     className="w-full min-h-48 max-h-80 lg:max-h-96 object-contain rounded-md mt-6 mb-6 bg-base-300 border-2 border-orange bg-gradient-to-t from-gray-200 via-gray-300 to-transparent backdrop-blur-lg inset-0"
                 />
 
-
-                      {/* Render recommendations */}
-      <div className="recommendations-container">
-        <h3>Recommendations ({recommendations.length})</h3>
-        {recommendations.map((recommendation) => (
-          <div key={recommendation.id} className="recommendation-item">
-            <p>Title: {recommendation.recommendationTitle}</p>
-            <p>Product Name: {recommendation.recommendedProductName}</p>
-            <p>Reason: {recommendation.recommendationReason}</p>
-            {/* Add additional fields as needed */}
-          </div>
-        ))}
-      </div>
-
-
-                {/* Recommend button */}
-                <div className='md:mt-8 w-full' id="Recommend">
+                    {/* Recommend button */}
+                <div className='pt-12 md:pb-1 md:pt-16 w-full' id="Recommend">
                     <div className="flex gap-2 mb-1 justify-between w-full">
-                        <button className="btn-xs flex text-lg w-full items-center bg-orange opacity-80 hover:opacity-100 text-white hover:bg-orange rounded-full py-6 lg:text-2xl lg:py-8 text-center justify-center px-4" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                        <button className="btn-xs animate-pulse hover:animate-none flex text-lg w-full items-center bg-[#FF6347] hover:opacity-100 text-white hover:bg-[#FF6347] rounded-full py-8 lg:text-2xl lg:py-12 text-center justify-center px-4" onClick={() => document.getElementById('my_modal_3').showModal()}>
                             <FaCommentAlt className="mr-2" />Click here for Recommend box
                         </button>
                         <dialog id="my_modal_3" className="modal">
-                            <div className="modal-box">
+                            <div className="modal-box bg-orange">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white font-extrabold text-xl">✕</button>
                                 </form>
                                 <div>
-                                    <h2>Add Recommendation</h2>
+                                    <h2 className="text-center font-bold text-4xl mb-4 text-white">Add Recommendation</h2>
                                     <form onSubmit={handleSubmit}>
                                         <input
                                             type="text"
                                             name="recommendationTitle"
                                             placeholder="Recommendation Title"
+                                            className="input input-bordered w-full mb-2"
                                             value={formData.recommendationTitle}
                                             onChange={handleChange}
                                             required
@@ -199,6 +185,7 @@ const QueryDetails = () => {
                                             type="text"
                                             name="recommendedProductName"
                                             placeholder="Recommended Product Name"
+                                            className="input input-bordered w-full mb-2"
                                             value={formData.recommendedProductName}
                                             onChange={handleChange}
                                             required
@@ -207,6 +194,7 @@ const QueryDetails = () => {
                                             type="url"
                                             name="recommendedProductImageURL"
                                             placeholder="Recommended Product Image URL"
+                                            className="input input-bordered w-full mb-2"
                                             value={formData.recommendedProductImageURL}
                                             onChange={handleChange}
                                             required
@@ -214,6 +202,7 @@ const QueryDetails = () => {
                                         <textarea
                                             name="recommendationReason"
                                             placeholder="Recommendation Reason"
+                                            className="textarea textarea-bordered w-full mb-2"
                                             value={formData.recommendationReason}
                                             onChange={handleChange}
                                             required
@@ -229,14 +218,27 @@ const QueryDetails = () => {
                                             name="userName"
                                             value={formData.userName}
                                         />
-                                        <button type="submit">Add Recommendation</button>
+                                        <button 
+                                            className="btn btn-primary text-black bg-white border-white hover:bg-transparent hover:border-black shadow-2xl w-full mt-2"
+                                        type="submit">Add Recommendation</button>
                                     </form>
                                 </div>
                             </div>
                         </dialog>
                     </div>
                 </div>
-                {/* <AddRecommendation></AddRecommendation> */}
+
+                {/* Render recommendations */}
+                <h3 className="text-black text-xl font-bold mt-12 mb-4">Total Recommendations ({recommendations.length})</h3>
+
+                <div className="recommendations-container bg-orange p-8 pb-1 text-white rounded-md drop-shadow-2xl">
+                    {recommendations.map((recommendation, idx) => (
+                        <AllRecommendation key={idx} recommendation={recommendation} idx={idx}></AllRecommendation>
+                    ))}
+                </div>
+
+
+                
             </div>
         </div>
     );
