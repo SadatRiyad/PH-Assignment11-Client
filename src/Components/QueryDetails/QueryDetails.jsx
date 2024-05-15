@@ -38,7 +38,7 @@ const QueryDetails = () => {
         // Fetch query details and associated recommendations
         const fetchQueryDetails = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/queries`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/queries`, { withCredentials: true });
                 const fetchedQuery = response.data.find((q) => q._id === queryId);
 
                 if (fetchedQuery) {

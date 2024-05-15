@@ -13,7 +13,7 @@ const MyRecommendations = () => {
     const [recommendations, setRecommendations] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/myRecommendations/${email}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/myRecommendations/${email}`, { withCredentials: true })
             .then(response => {
                 setRecommendations(response.data);
             })
@@ -85,11 +85,11 @@ const MyRecommendations = () => {
                             <th>Query Product Name & Brand:</th>
                             <th className="justify-between flex items-center text-center">Alternate Image: <span className="mx-1"> Product Name: </span> Recommended By: <span className="mx-1">Timestamp: </span>Action:</th>
                         </tr>
-                    </thead>      
-                        {
-                            recommendations.length === 0 ? <tr><td colSpan="4" className="text-center text-xl md:text-2xl bg-slate-400 p-16 text-white">No Recommendations Found!</td></tr>
-                                :
-                                <tbody>
+                    </thead>
+                    {
+                        recommendations.length === 0 ? <tr><td colSpan="4" className="text-center text-xl md:text-2xl bg-slate-400 p-16 text-white">No Recommendations Found!</td></tr>
+                            :
+                            <tbody>
                                 {
                                     recommendations.map((rec, idx) => (
                                         <MyRecommendationsCard
@@ -99,8 +99,8 @@ const MyRecommendations = () => {
                                         />
                                     ))
                                 }
-                                </tbody>
-                        }
+                            </tbody>
+                    }
                 </table>
             </div>
         </div>

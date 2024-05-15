@@ -10,7 +10,7 @@ const RecommendForMe = () => {
     const [queries, setQueries] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/recommendationsForMe/${email}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/recommendationsForMe/${email}`, { withCredentials: true })
             .then(response => {
                 setQueries(response.data);
             })

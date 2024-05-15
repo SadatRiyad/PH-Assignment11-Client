@@ -13,15 +13,16 @@ const MyQueries = () => {
     const { email } = user;
     const [queries, setQueries] = useState([]);
 
+    const url = `${import.meta.env.VITE_API_URL}/queries/myQueries/${email}`;
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/queries/myQueries/${email}`)
+        axios.get(url, { withCredentials: true })
             .then(response => {
                 setQueries(response.data);
             })
             .catch(error => {
                 console.error('Error fetching queries:', error);
             });
-    }, [email, render1]);
+    }, [email, render1,url]);
 
     const handleSort = (sort) => {
         if (sort === "newDatePosted") {
