@@ -84,6 +84,19 @@ const AddQuery = () => {
                         </div>
                     </div>
                     <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                            <label htmlFor="queryTitle" className="form-label text-base-300 font-bold label-text">Query Title:</label>
+                            <input
+                                type="text"
+                                className="form-control input w-full input-bordered mt-1"
+                                placeholder="ex: Is there any Better product that gives me the same quality?"
+                                id="queryTitle"
+                                name="queryTitle"
+                                value={formData.queryTitle}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
                         <div className="mb-3">
                             <label htmlFor="productName" className="form-label text-base-300 font-bold label-text">Product Name:</label>
                             <input
@@ -123,19 +136,7 @@ const AddQuery = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="queryTitle" className="form-label text-base-300 font-bold label-text">Query Title:</label>
-                            <input
-                                type="text"
-                                className="form-control input w-full input-bordered mt-1"
-                                placeholder="ex: Is there any Better product that gives me the same quality?"
-                                id="queryTitle"
-                                name="queryTitle"
-                                value={formData.queryTitle}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
+                        
                         <div className="mb-3">
                             <label htmlFor="boycottingReason" className="form-label text-base-300 font-bold label-text">Boycotting Reason Details:</label>
                             <textarea

@@ -22,7 +22,6 @@ const MyQueries = () => {
                 console.error('Error fetching queries:', error);
             });
     }, [email, render1]);
-    console.log(queries)
 
     const handleSort = (sort) => {
         if (sort === "newDatePosted") {

@@ -13,8 +13,9 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [render, setRender] = useState(false);
-    const [data, setData] = useState([]);
     const [render1, setRender1] = useState(false);
+    const [data, setData] = useState([]);
+
     // google auth provider
     const googleProvider = new GoogleAuthProvider();
     // facebook auth provider
@@ -90,7 +91,7 @@ const AuthProvider = ({ children }) => {
         });
         return () => unSubscribe();
     }, [render, auth]);
-// 
+
     // useEffet for loading api
     useEffect(() => {
         const unData = fetch(`${import.meta.env.VITE_API_URL}/queries`)

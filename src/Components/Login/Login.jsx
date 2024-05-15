@@ -19,6 +19,7 @@ const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const { loginUser, handleSignInWithGoogle } = useAuth();
 
+    // toggle password visibility
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
@@ -73,11 +74,11 @@ const Login = () => {
                         <img className="mx-auto -mt-6 lg:mt-0 w-full rounded-lg" src={loginpic} alt="" />
                     </div>
                     <div>
-                    <h1 className="text-2xl md:text-4xl font-semibold mt-8">Welcome to <br /><span className=" font-extrabold text-orange">BB-QueryHub</span> Login...</h1>
-                    <p className="py-6 mb-8 lg:mb-0 text-balance text-xs lg:text-base opacity-95 px-3 lg:px-0">
-                        Already a member? <br /> Log in now to access your account. <br />
-                        If you have any questions or need assistance, <br /> feel free to <a className="font-bold underline text-orange" href="/contactUs">contact</a> our support team.
-                    </p>
+                        <h1 className="text-2xl md:text-4xl font-semibold mt-8">Welcome to <br /><span className=" font-extrabold text-orange">BB-QueryHub</span> Login...</h1>
+                        <p className="py-6 mb-8 lg:mb-0 text-balance text-xs lg:text-base opacity-95 px-3 lg:px-0">
+                            Already a member? <br /> Log in now to access your account. <br />
+                            If you have any questions or need assistance, <br /> feel free to <a className="font-bold underline text-orange" href="/contactUs">contact</a> our support team.
+                        </p>
                     </div>
                 </div>
                 <div className="md:w-3/4 w-5/6 lg:w-2/4 py-8 justify-around lg:ml-8 lg:pl-12">

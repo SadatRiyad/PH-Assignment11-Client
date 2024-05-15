@@ -15,7 +15,6 @@ const Queries = () => {
     const [search, setSearch] = useState("");
     const [searchText, setSearchText] = useState("");
 
-
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/queries`)
             .then(response => {
@@ -27,8 +26,23 @@ const Queries = () => {
     }, [render1, search]);
     // console.log(queries)
 
+    // loading if query is not loaded
+    if (!queries) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-orange"></div>
+            </div>
+        );
+    }
+
     const handleSort = (sort) => {
-        if (sort === "newDatePosted") {
+        if (sort === "mostRecommended") {
+            const sortedQueries = queries.sort((a, b) => b.recommendationCount - a.recommendationCount);
+            setQueries([...sortedQueries]);
+        } else if (sort === "lessRecommended") {
+            const sortedQueries = queries.sort((a, b) => a.recommendationCount - b.recommendationCount);
+            setQueries([...sortedQueries]);
+        } else if (sort === "newDatePosted") {
             const sortedQueries = queries.sort((a, b) => new Date(b.datePosted) - new Date(a.datePosted));
             setQueries([...sortedQueries]);
         } else {
@@ -49,7 +63,7 @@ const Queries = () => {
         setQueries([...filteredQueries]);
         setSearch("");
     }
-    console.log(search)
+
     return (
         <>
             <Helmet>
@@ -67,9 +81,11 @@ const Queries = () => {
                     <div className='flex justify-center'>
                         <div className="dropdown dropdown-top">
                             <div tabIndex={0} role="button" className="btn m-1 bg-orange hover:bg-orange border-orange text-white hover:text-white rounded hover:border-orange transition-all duration-200 py-1">Sort by <BiLeftTopArrowCircle className="text-xl"></BiLeftTopArrowCircle></div>
-                            <ul tabIndex={0} className="dropdown-content right-1 z-[999] menu p-2 shadow w-44 bg-orange hover:bg-orange border-orange text-white hover:text-white rounded hover:border-orange  transition-all duration-200">
-                                <li onClick={() => { handleSort("newDatePosted") }}><a>Sort for New Query</a></li>
-                                <li onClick={() => { handleSort("datePosted") }}><a>Sort for Old Query</a></li>
+                            <ul tabIndex={0} className="dropdown-content text-xs right-1 z-[999] menu p-2 shadow w-44 bg-orange hover:bg-orange border-orange text-white hover:text-white rounded hover:border-orange  transition-all duration-200">
+                                <li onClick={() => { handleSort("newDatePosted") }}><a>Sort New Query</a></li>
+                                <li onClick={() => { handleSort("datePosted") }}><a>Sort Old Query</a></li>
+                                <li onClick={() => { handleSort("mostRecommended") }}><a>Most Recommended</a></li>
+                                <li onClick={() => { handleSort("lessRecommended") }}><a>Less Recommended</a></li>
                             </ul>
                         </div>
                     </div>
@@ -99,9 +115,9 @@ const Queries = () => {
                                 {queries.length === 0 ? (
                                     <div className="text-start w-fit mx-auto mt-8 md:mt-20">
                                         <div className="bg-base-200 px-6 py-12 md:p-12 ">
-                                            <h1 className="text-center px-5 md:px-12 text-xl md:2xl lg:3xl font-bold text-orange">Hey there! <br /> It looks like there is no Query availabe for &apos;{searchText}&apos;. <br /> If you want to create a query about &apos;{searchText},&apos; <br /> Go to <Link to="/myQueries" className="text-red underline">My Queries</Link> and then add your query. <br /><span className="text-red font-bold text-2xl">OR,</span></h1>
+                                            <h1 className="text-center px-5 md:px-12 text-xl md:2xl lg:3xl font-bold text-orange">Hey there! <br /> It looks like there is no Query availabe for &apos;<span className="text-red">{searchText}</span>&apos;. <br /> If you want to create a query,<br /> Go to <Link to="/myQueries" className="text-red underline">My Queries</Link> and then add your query. <br /><span className="text-red font-bold text-2xl">OR,</span></h1>
                                             <div className="flex justify-center mt-8">
-                                                <button onClick={() => setRender1(!render1)} className="btn btn-primary bg-orange border-orange text-white hover:bg-orange hover:border-orange hover:-translate-y-1">Reset Search</button>
+                                                <button onClick={() => setRender1(!render1)} className="btn btn-primary bg-orange border-orange text-white hover:bg-orange hover:border-orange hover:-translate-y-1 px-6">Reset</button>
                                             </div>
                                         </div>
                                     </div>
@@ -118,12 +134,14 @@ const Queries = () => {
                             <div className="mt-12">
                                 {queries.length === 0 ? (
                                     <div className="text-start w-fit mx-auto mt-8 md:mt-20">
-                                        <div className="bg-base-200 px-6 py-12 md:p-12 ">
-                                            <h1 className="text-center px-5 md:px-12 text-xl md:2xl lg:3xl font-bold text-orange">Hey there! <br /> It looks like there is no Query availabe for &apos;{searchText}&apos;. <br /> If you want to create a query about &apos;{searchText},&apos; <br /> Go to <Link to="/myQueries" className="text-red underline">My Queries</Link> and then add your query. <br /><span className="text-red font-bold text-2xl">OR,</span></h1>
-                                            <div className="flex justify-center mt-8">
-                                                <button onClick={() => setRender1(!render1)} className="btn btn-primary bg-orange border-orange text-white hover:bg-orange hover:border-orange hover:-translate-y-1">Reset Search</button>
+                                        {
+                                            <div className="bg-base-200 px-6 py-12 md:p-12 ">
+                                                <h1 className="text-center px-5 md:px-12 text-xl md:2xl lg:3xl font-bold text-orange">Hey there! <br /> It looks like there is no Query availabe for &apos;{searchText}&apos;. <br /> If you want to create a query about &apos;{searchText},&apos; <br /> Go to <Link to="/myQueries" className="text-red underline">My Queries</Link> and then add your query. <br /><span className="text-red font-bold text-2xl">OR,</span></h1>
+                                                <div className="flex justify-center mt-8">
+                                                    <button onClick={() => setRender1(!render1)} className="btn btn-primary bg-orange border-orange text-white hover:bg-orange hover:border-orange hover:-translate-y-1">Reset Search</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 lg:px-28 text-pretty gap-4 ">

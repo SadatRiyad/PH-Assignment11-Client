@@ -38,11 +38,9 @@ const QueriesCard = ({ query }) => {
                             <p className="text-xs text-gray-600">{userEmail}</p>
                         </div>
                     </div>
-                    <Link to={`/queryDetails/id/${_id}`}>
-                        <div className='tooltip tooltip-left tooltip-warning' data-tip="Recommend">
-                            <Link to={`/queryDetails/id/${_id}`} className="btn-xs border-2 flex justify-center items-center gap-1 py-4 bg-[#FF6347] hover:scale-105 border-[#FF6347] text-white rounded-full text-[14px] px-8 shadow-xl transition-all duration-200 font-bold mt-0"><FaCommentAlt /> {recommendationCount}</Link>
-                        </div>
-                    </Link>
+                    <div className='tooltip tooltip-left tooltip-warning' data-tip="Recommend">
+                        <p className="btn-xs border-2 flex justify-center items-center gap-1 py-4 bg-[#FF6347] hover:scale-105 border-[#FF6347] text-white rounded-full text-[14px] px-8 shadow-xl transition-all duration-200 font-bold mt-0"><FaCommentAlt /> {recommendationCount}</p>
+                    </div>
 
                 </div>
                 <div className="card-body p-0">
@@ -64,7 +62,7 @@ const QueriesCard = ({ query }) => {
                 <div className="">
                     <img
                         src={productImageURL}
-                        alt={productName}
+                        alt={`Query Poduct ${productName} Image`}
                         className="flex-1 w-full min-h-40 md:min-h-48 max-h-80 object-contain rounded-md mb-3 bg-base-300 border-2 border-orange"
                     />
                 </div>

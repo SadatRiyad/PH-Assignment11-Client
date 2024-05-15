@@ -72,7 +72,7 @@ const MyQueriesCard = ({ query }) => {
         <div data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50" className="card recent-query-card bg-gradient-to-b from-orange via-amber-200 to-rose-100 rounded-lg p-5 mb-4 shadow-lg">
             <img
                 src={productImageURL}
-                alt={productName}
+                alt={`Query Poduct ${productName} Image`}
                 className="w-full min-h-48 object-contain rounded-md mb-3 bg-base-300 border-2 border-orange"
             />
             <div className="flex items-center justify-between mb-3">

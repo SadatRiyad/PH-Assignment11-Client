@@ -32,8 +32,8 @@ const RecentQueryItemsData = ({ query }) => {
             className="card recent-query-card bg-white rounded-lg p-4 mb-4 pb-0 overflow-hidden shadow-lg border border-gradient-orange">
             <img
                 src={productImageURL}
-                alt={productName}
-                className="w-full min-h-48 md:min-h-52 border-2 border-[#FF6347] lg:max-h-60 object-cover rounded-md mb-3"
+                alt={`Query Poduct ${productName} Image`}
+                className="w-full min-h-48 md:min-h-52 bg-base-300 border-2 border-[#FF6347] lg:max-h-60 object-cover rounded-md mb-3"
             />
             <div data-aos="fade-right" data-aos-duration="600" data-aos-anchor-placement="top-bottom" data-aos-delay="0" className='card-body pb-4 break-words items-start text-left px-1 pt-4'>
                 <div>

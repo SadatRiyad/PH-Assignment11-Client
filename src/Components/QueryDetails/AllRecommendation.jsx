@@ -45,7 +45,7 @@ const AllRecommendation = ({ recommendation, idx }) => {
                         <p className="text-sm lg:text-lg text-gray-800 break-words mb-1">
                             <span className="font-semibold">Recommendation Reason:</span> {recommendationReason}
                         </p>
-                        <p className="text-sm lg:text-lg text-gray-800 mb-1"><span className="font-semibold">Recommended Date & Time:</span> {timestamp}</p>
+                        <p className="text-sm lg:text-lg text-gray-800 mb-1"><span className="font-semibold">Timestamp:</span> {timestamp}</p>
                         {/* {
                             updateDatePosted && <p className="text-sm lg:text-lg text-gray-800"><span className="font-semibold">Query Last Updated:</span> {updateDatePosted}</p>
                         } */}

@@ -20,6 +20,8 @@ import AddQuery from './Components/AddQuery/AddQuery.jsx'
 import ContactUs from './Components/ContactUs/ContactUs.jsx'
 import QueryDetails from './Components/QueryDetails/QueryDetails.jsx'
 import UpdateQuery from './Components/UpdateQuery/UpdateQuery.jsx'
+import RecommendForMe from './Components/RecommendForMe/RecommendForMe.jsx'
+import MyRecommendations from './Components/MyRecommendatios/MyRecommendations.jsx'
 AOS.init();
 
 
@@ -48,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/recommendationsForMe",
-        element: <div>Recommendations For Me</div>,
+        element: <PrivateRoute><RecommendForMe></RecommendForMe></PrivateRoute>,
       },
       {
         path: "/myQueries",
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/myRecommendations",
-        element: <div>My Recommendations</div>,
+        element: <PrivateRoute><MyRecommendations></MyRecommendations></PrivateRoute>
       },
       {
         path: "/contactUs",
