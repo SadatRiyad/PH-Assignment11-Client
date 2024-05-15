@@ -26,10 +26,11 @@ const RecommendForMe = () => {
             <Helmet>
                 <title>Recommendation For Me | BB-QueryHub</title>
             </Helmet>
-            <h1 className="text-center text-xl md:text-3xl mb-12 font-extrabold">All the Recommendations for me...</h1>
+            <h1 className="text-center text-xl md:text-3xl mb-1 font-extrabold" data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50">All the Recommendations for me...</h1>
+            <p className="text-center text-sm md:text-base mb-12 text-balance px-4" data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50">Explore recommendations from other users and find new products to try.</p>
 
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table" data-aos="zoom-in" data-aos-duration="700" data-aos-anchor-placement="top-bottom" data-aos-delay="50">
                     <thead>
                         <tr>
                             <th>Query Post Image : </th>
