@@ -5,9 +5,6 @@ const RecommendForMeRecommendationCard = ({ recomendation, _id }) => {
     const {
         recommendedProductName,
         recommendedProductImageURL,
-        recommendationTitle,
-        id,
-        recommendationReason,
         recommendedUserEmail,
         recommendedUserName,
         recommendedUserImageUrl,
@@ -32,13 +29,12 @@ const RecommendForMeRecommendationCard = ({ recomendation, _id }) => {
                             <div className="text-xs opacity-50"><span className="font-bold text-[10px]">{recommendedUserEmail}</span></div>
                         </div>
                     </div>
-
                 </div>
             </td>
             <td>
                 <div className="flex items-center gap-6">
                     <div>
-                        <div className="font-bold"><span className="font-medium">{recommendedProductName}</span></div>
+                        <div className="font-bold"><span className="font-medium">Product Name: </span>{recommendedProductName}</div>
                         <div className="text-xs opacity-50"><span className="font-bold">{timestamp}</span></div>
                     </div>
                 </div>

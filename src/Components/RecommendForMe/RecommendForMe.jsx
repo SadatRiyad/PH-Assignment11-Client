@@ -8,7 +8,7 @@ const RecommendForMe = () => {
     const { user, render1 } = useAuth();
     const { email } = user;
     const [queries, setQueries] = useState([]);
-    
+
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/recommendations/recommendationsForMe/${email}`)
             .then(response => {
@@ -18,7 +18,9 @@ const RecommendForMe = () => {
                 console.error('Error fetching queries:', error);
             });
     }, [email, render1]);
-    console.log(queries)
+
+
+
     return (
         <div className="bg-base-300 mx-4 px-4 py-20">
             <Helmet>
@@ -28,7 +30,6 @@ const RecommendForMe = () => {
 
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Query Post Image : </th>
@@ -36,15 +37,20 @@ const RecommendForMe = () => {
                             <th>Recommended Product Image & Recommender Details : <span className="mx-4">Recommended Product Name & Timestamp : </span> View Details Button : </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {
-                            queries.map((query, idx) => <RecommendForMeQueryCard
-                                key={idx}
-                                query={query}
-                                idx={idx}
-                            ></RecommendForMeQueryCard>)
-                        }
-                    </tbody>
+                    {
+                        queries.length === 0 ? <tr><td colSpan="3" className="text-center text-xl md:text-2xl bg-slate-400 p-16 text-white">No Recommendations Found!</td></tr>
+                            :
+                            <tbody>
+                                {
+                                    queries.map((query, idx) => <RecommendForMeQueryCard
+                                        key={idx}
+                                        query={query}
+                                        idx={idx}
+                                    ></RecommendForMeQueryCard>)
+                                }
+                            </tbody>
+                    }
+
                 </table>
             </div>
         </div>

@@ -12,15 +12,13 @@ const MyRecommendationsCard = ({ recommendation, onDelete }) => {
     } = recommendation;
 
     const handleDeleteClick = (recommendationId) => {
-        if (window.confirm("Are you sure you want to delete this recommendation?")) {
-            onDelete(recommendationId);
-        }
+        onDelete(recommendationId);
     };
 
     return (
         <tr className="recommendation-card">
             <td>
-                <img className="min-w-20 max-w-20 border border-black h-fit min-h-16 object-cover" src={productImageURL} alt="Query product img"/>
+                <img className="min-w-20 max-w-20 border border-black h-fit min-h-16 object-cover" src={productImageURL} alt="Query product img" />
             </td>
             <td>
                 {queryTitle}
@@ -28,13 +26,13 @@ const MyRecommendationsCard = ({ recommendation, onDelete }) => {
             <td>
                 Product: {productName} <br /> (Brand: {productBrand})
             </td>
-   
+
             {recommendations.map((rec) => (
                 <ul key={rec.id}>
                     <li className="justify-between flex items-center text-center">
                         <td>
                             <img src={rec.recommendedProductImageURL} alt="img" className="min-w-20 border border-black h-fit min-h-16 object-cover" />
-                            
+
                         </td>
                         <td><p>{rec.recommendedProductName}</p></td>
                         <td>{rec.recommendedUserName}</td>
