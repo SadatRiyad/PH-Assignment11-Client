@@ -8,6 +8,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../Hooks/useAuth/useAuth";
 import registerPic from "../../assets/aaa.png";
+import axios from "axios";
 
 const Register = () => {
     const { registerUser, updateUserProfile, setRender, setUser, user } = useAuth();
@@ -33,14 +34,27 @@ const Register = () => {
         registerUser(email, password)
             .then(() => {
                 updateUserProfile(name, photoURL)
-                    .then(() => {
-                        setRender(true);
-                        setUser({ ...user, displayName: name, photoURL: photoURL })
-                        toast("Registration successful, you will be redirected to the home page shortly!", { type: "success", autoClose: 2000 });
-                        setTimeout(() => {
-                            navigate(redirect);
-                        }, 3000)
-                    });
+                const userToken = { email };
+                // get access token
+                axios.post(`${import.meta.env.VITE_API_URL}/jwt`, userToken, {
+                    withCredentials: true,
+                })
+                    .then((res) => {
+                        const token = res.data.token;
+                        console.log(token)
+                        if (res.data.success) {
+                            setRender(true);
+                            setUser({ ...user, displayName: name, photoURL: photoURL })
+                            toast("Register Successfully!", { type: "success", autoClose: 2000 });
+                            setTimeout(() => {
+                                navigate(redirect);
+                            }, 3000)
+                        }
+                    })
+                    // .then(() => {
+                      
+                       
+                    // });
             }).catch(() => {
                 toast.error('Email already in use, please try another email', { autoClose: 2000 });
                 reset();

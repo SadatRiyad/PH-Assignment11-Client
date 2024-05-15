@@ -21,7 +21,7 @@ const MyRecommendations = () => {
                 console.error('Error fetching recommendations:', error);
             });
     }, [email, render1]);
-    console.log(recommendations)
+    // console.log(recommendations)
 
 
     const handleDeleteRecommendation = async (id) => {
