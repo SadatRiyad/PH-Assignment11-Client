@@ -3,8 +3,10 @@ import { FaCommentAlt, FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth/useAuth';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure';
 
 const MyQueriesCard = ({ query }) => {
+    const axiosSecure = useAxiosSecure();
     const { setRender1, render1 } = useAuth();
     const {
         _id,
@@ -40,16 +42,9 @@ const MyQueriesCard = ({ query }) => {
             color: "black", 
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`${import.meta.env.VITE_API_URL}/queries/id/${_id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ _id })
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data) {
+                axiosSecure.delete(`/queries/id/${_id}`)
+                    .then(res => {
+                        if (res.data) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your Query has been deleted.",

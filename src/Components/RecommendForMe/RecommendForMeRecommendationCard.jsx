@@ -12,11 +12,11 @@ const RecommendForMeRecommendationCard = ({ recomendation, _id }) => {
     } = recomendation;
 
     return (
-        <ol className='items-center h-full justify-center w-full mt-4 mb-2'>
+        <li className='items-center h-full justify-between flex w-full mt-4 mb-2'>
             <td className='items-center h-full'>
                 <div className="flex gap-4 items-center">
-                    <div className="w-1/3 h-fit">
-                        <img src={recommendedProductImageURL} alt="productImage" className="rounded-md min-w-20 border border-orange h-fit min-h-16 object-cover" />
+                    <div className="w-1/3 h-fit ">
+                        <img src={recommendedProductImageURL} alt="Product Image" className="rounded-md min-w-20 border border-orange h-fit min-h-16 object-cover" />
                     </div>
                     <div className="flex items-center">
                         <div className="avatar mr-2">
@@ -43,7 +43,7 @@ const RecommendForMeRecommendationCard = ({ recomendation, _id }) => {
             <th>
                 <Link to={`/queryDetails/id/${_id}`} className="btn ml-4 btn-ghost bg-orange text-white btn-md hover:bg-transparent hover:border-orange hover:text-orange">View Details</Link>
             </th>
-        </ol>
+        </li>
     );
 };
 

@@ -2,16 +2,15 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import useAuth from '../Hooks/useAuth/useAuth';
-import axios from 'axios';
 import { useLoaderData } from 'react-router-dom';
+import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure';
 
 const UpdateQuery = () => {
     const data = useLoaderData();
-    const { productName, productBrand, productImageURL, queryTitle, boycottingReason, datePosted ,_id} = data;
-    // console.log(productName, productBrand, productImageURL, queryTitle, boycottingReason, userEmail, userName, userImageUrl, datePosted)
+    const { productName, productBrand, productImageURL, queryTitle, boycottingReason, datePosted, _id } = data;
     const { auth, setRender1, render1 } = useAuth();
     const currentUser = auth.currentUser;
-    // console.log(currentUser)
+    const axiosSecure = useAxiosSecure();
 
     const [formData, setFormData] = useState({
         productName: `${productName}`,
@@ -51,9 +50,7 @@ const UpdateQuery = () => {
             };
 
             // Send a PUT request to your server to Update the query
-            const response = await axios.put(`${import.meta.env.VITE_API_URL}/queries/id/${_id}`, queryData);
-            console.log('Query update successfully:', response.data);
-
+            const response = await axiosSecure.put(`/queries/id/${_id}`, queryData);
             if (response.data.acknowledged == true) {
                 toast.success('Query update successfully!', { autoClose: 2000 });
                 setRender1(!render1);

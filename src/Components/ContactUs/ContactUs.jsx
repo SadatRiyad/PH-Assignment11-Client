@@ -78,7 +78,7 @@ const ContactUs = () => {
                     </div>
                     <div>
                         <h2 className="text-3xl font-semibold text-white mb-8 mt-8">Send us a Message</h2>
-                        <form action="mailto:support@binarybeasts.com" onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 id="name"

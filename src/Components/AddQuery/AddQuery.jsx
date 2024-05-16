@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import useAuth from '../Hooks/useAuth/useAuth';
-import axios from 'axios';
+import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure';
 
 const AddQuery = () => {
     const { auth } = useAuth();
     const currentUser = auth.currentUser;
+    const axiosSecure = useAxiosSecure();
     // console.log(currentUser)
 
     const [formData, setFormData] = useState({
@@ -45,8 +46,7 @@ const AddQuery = () => {
             };
 
             // Send a POST request to your server to add the query
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/queries/addQuery`, queryData);
-            console.log('Query added successfully:', response.data);
+            const response = await axiosSecure.post(`/queries/addQuery`, queryData);
 
             if (response.data.acknowledged == true) {
                 toast.success('Query added successfully!', { autoClose: 2000 });
@@ -84,7 +84,7 @@ const AddQuery = () => {
                         </div>
                     </div>
                     <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="queryTitle" className="form-label text-base-300 font-bold label-text">Query Title:</label>
                             <input
                                 type="text"
@@ -136,7 +136,7 @@ const AddQuery = () => {
                                 required
                             />
                         </div>
-                        
+
                         <div className="mb-3">
                             <label htmlFor="boycottingReason" className="form-label text-base-300 font-bold label-text">Boycotting Reason Details:</label>
                             <textarea

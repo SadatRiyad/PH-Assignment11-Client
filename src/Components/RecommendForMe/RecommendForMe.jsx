@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth/useAuth";
-import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import RecommendForMeQueryCard from "./RecommendForMeQueryCard";
+import useAxiosSecure from "../Hooks/useAxiosSecure/useAxiosSecure";
 
 const RecommendForMe = () => {
+    const axiosSecure = useAxiosSecure();
     const { user, render1 } = useAuth();
     const { email } = user;
     const [queries, setQueries] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/recommendationsForMe/${email}`, { withCredentials: true })
+        axiosSecure.get(`/recommendations/recommendationsForMe/${email}`)
             .then(response => {
-                setQueries(response.data);
+                const res = response.data;
+                // filter and remove those recommendatios those are done by me for that i have to compare email with this res[].recommendations[].recommendedUserEmail data
+                res.forEach(query => {
+                    query.recommendations = query.recommendations.filter(recommendation => recommendation.recommendedUserEmail !== email);
+                });
+                if (res.length > 0) {
+                    setQueries(res);
+                }
             })
             .catch(error => {
                 console.error('Error fetching queries:', error);
             });
-    }, [email, render1]);
+    }, [axiosSecure, email, render1]);
 
 
 

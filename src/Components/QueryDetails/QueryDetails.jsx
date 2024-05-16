@@ -6,8 +6,10 @@ import axios from "axios";
 import useAuth from "../Hooks/useAuth/useAuth";
 import { toast } from "react-toastify";
 import AllRecommendation from "./AllRecommendation";
+import useAxiosSecure from "../Hooks/useAxiosSecure/useAxiosSecure";
 
 const QueryDetails = () => {
+    const axiosSecure = useAxiosSecure();
     const [query, setQuery] = useState(useLoaderData());
     const queryId = query._id;
     const { auth, render1, setRender1 } = useAuth();
@@ -76,7 +78,6 @@ const QueryDetails = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const currentDate = new Date();
 
@@ -89,14 +90,13 @@ const QueryDetails = () => {
                 timestamp: formattedDate,
             };
 
-            const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/queries/${_id}/recommendations`,
-                queryData
-            );
-
-            console.log(response.data); // Handle success or error response
-            toast.success('Recommendation added successfully!', { autoClose: 2000 });
-            setRender1(!render1);
+            await axiosSecure.post(`/queries/${_id}/recommendations`, queryData)
+                .then((res) => {
+                    if (res.data) {
+                        toast.success("Recommendation added successfully:"), { autoClose: 2000 };
+                        setRender1(!render1);
+                    }
+                });
 
             // Reset form after successful submission
             setFormData({

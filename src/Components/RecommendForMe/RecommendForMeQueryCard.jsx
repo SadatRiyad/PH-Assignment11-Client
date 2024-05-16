@@ -25,14 +25,16 @@ const RecommendForMeQueryCard = ({ query }) => {
                     </p>
                 </div>
             </td>
-            {
-                recommendations.map((recomendation, idx) => <RecommendForMeRecommendationCard
-                    key={idx}
-                    recomendation={recomendation}
-                    _id={_id}
-                >
-                </RecommendForMeRecommendationCard>)
-            }
+            <ul className="justify-between flex flex-col items-center w-full">
+                {
+                    recommendations.map((recomendation, idx) => <RecommendForMeRecommendationCard
+                        key={idx}
+                        recomendation={recomendation}
+                        _id={_id}
+                    >
+                    </RecommendForMeRecommendationCard>)
+                }
+            </ul>
         </tr>
     );
 };

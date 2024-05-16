@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 import app from "../../FirebaseConfig/FirebaseConfig";
+import axios from "axios";
 
 // export the AuthContext so that other components can use it
 export const AuthContext = createContext(null);
@@ -80,17 +81,31 @@ const AuthProvider = ({ children }) => {
     }
     // log out user
     const logoutUser = () => {
-        return signOut(auth)
+        return signOut(auth);
     }
 
     // observe the user auth state changes
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
+            setUser(currentUser);
             setLoading(false);
+            // if user exist then issue a token
+            if (currentUser) {
+                axios.post(`${import.meta.env.VITE_API_URL}/jwt`, loggedUser, { withCredentials: true })
+                // .then(response => {
+                //     console.log(response.data);
+                // })
+            } else {
+                axios.post(`${import.meta.env.VITE_API_URL}/logout`, loggedUser, { withCredentials: true })
+                // .then(response => {
+                //     console.log(response.data);
+                // })
+            }
         });
         return () => unSubscribe();
-    }, [render, auth]);
+    }, [render, auth, user?.email]);
 
     // useEffet for loading api
     useEffect(() => {
@@ -115,6 +130,7 @@ const AuthProvider = ({ children }) => {
         setRender1,
         render1,
         setRender,
+        render,
         registerUser,
         loginUser,
         logoutUser,

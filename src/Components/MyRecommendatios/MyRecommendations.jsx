@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth/useAuth";
-import axios from "axios";
 import MyRecommendationsCard from "./MyRecommendationsCard";
 // import "./MyRecommendations.css"
 import { Helmet } from "react-helmet-async";
 // import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../Hooks/useAxiosSecure/useAxiosSecure";
 
 const MyRecommendations = () => {
+    const axiosSecure = useAxiosSecure();
     const { user, render1, setRender1 } = useAuth();
     const { email } = user;
     const [recommendations, setRecommendations] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/myRecommendations/${email}`, { withCredentials: true })
+        axiosSecure.get(`/recommendations/myRecommendations/${email}`)
             .then(response => {
                 setRecommendations(response.data);
             })
             .catch(error => {
                 console.error('Error fetching recommendations:', error);
             });
-    }, [email, render1]);
+    }, [axiosSecure, email, render1]);
     // console.log(recommendations)
 
 
@@ -38,16 +39,9 @@ const MyRecommendations = () => {
             color: "black",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`${import.meta.env.VITE_API_URL}/recommendations/${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id })
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data) {
+                axiosSecure.delete(`/recommendations/${id}`)
+                    .then(res => {
+                        if (res.data) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Recommendation deleted successfully.",

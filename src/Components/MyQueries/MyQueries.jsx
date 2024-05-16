@@ -1,28 +1,28 @@
 import useAuth from "../Hooks/useAuth/useAuth";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import MyQueriesCard from "./MyQueriesCard";
 import { Helmet } from "react-helmet-async";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import useAxiosSecure from "../Hooks/useAxiosSecure/useAxiosSecure";
 
 const MyQueries = () => {
     const [tabIndex, setTabIndex] = useState(0)
     const { user, render1 } = useAuth();
     const { email } = user;
     const [queries, setQueries] = useState([]);
+    const axiosSecure = useAxiosSecure();
 
-    const url = `${import.meta.env.VITE_API_URL}/queries/myQueries/${email}`;
     useEffect(() => {
-        axios.get(url, { withCredentials: true })
+        axiosSecure.get(`/queries/myQueries/${email}`)
             .then(response => {
                 setQueries(response.data);
             })
             .catch(error => {
                 console.error('Error fetching queries:', error);
             });
-    }, [email, render1,url]);
+    }, [axiosSecure, email, render1]);
 
     const handleSort = (sort) => {
         if (sort === "newDatePosted") {

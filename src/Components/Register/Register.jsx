@@ -11,7 +11,7 @@ import registerPic from "../../assets/aaa.png";
 import axios from "axios";
 
 const Register = () => {
-    const { registerUser, updateUserProfile, setRender, setUser, user } = useAuth();
+    const { registerUser, updateUserProfile, setRender, render, setUser, user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const redirect = location?.state || '/';
@@ -43,7 +43,7 @@ const Register = () => {
                         const token = res.data.token;
                         console.log(token)
                         if (res.data.success) {
-                            setRender(true);
+                            setRender(!render);
                             setUser({ ...user, displayName: name, photoURL: photoURL })
                             toast("Register Successfully!", { type: "success", autoClose: 2000 });
                             setTimeout(() => {
@@ -51,10 +51,10 @@ const Register = () => {
                             }, 3000)
                         }
                     })
-                    // .then(() => {
-                      
-                       
-                    // });
+                // .then(() => {
+
+
+                // });
             }).catch(() => {
                 toast.error('Email already in use, please try another email', { autoClose: 2000 });
                 reset();
