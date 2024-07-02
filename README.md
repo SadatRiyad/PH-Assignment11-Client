@@ -2,6 +2,11 @@
 
 Welcome to BB-QueryHub, an Alternative Product Information System where users can share queries and recommendations about products.
 
+## Live Link
+
+- Client-Side Deployment: [Surge](https://PH-Assignment11-SadatRiyad.surge.sh): https://PH-Assignment11-SadatRiyad.surge.sh
+
+
 ## Description
 
 BB-QueryHub is a web application built with React.js, designed to allow users to add, update, and delete their queries and recommendations regarding alternative products. The system also enables users to view queries and recommendations from other users.
@@ -28,7 +33,7 @@ To run this project locally, follow these steps:
 
 1. Clone the client-side repository:
    ```
-   git clone https://github.com/sadatriyad/PH-Assignment11-Client
+   git clone https://github.com/SadatRiyad/PH-Assignment11-Client
    ```
 2. Navigate to the project directory:
    ```
@@ -43,9 +48,6 @@ To run this project locally, follow these steps:
    npm run dev
    ```
 
-## Live Demo
-
-- Client-Side Deployment: [Surge](https://PH-Assignment11-SadatRiyad.surge.sh): https://PH-Assignment11-SadatRiyad.surge.sh
 
 ## Author
 
